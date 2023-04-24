@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header<HeaderContainerProps>`
   align-items: center;
   gap: 1.3rem;
   background-image: linear-gradient(to right top, #000b53, #000d46, #020c39, #06092c, #05061f, #05061f, #05061f, #05061f, #06092c, #020c39, #000d46, #000b53);
-  box-shadow: 0 0 0 2px ${(props) => props.theme["base-subtitle"]};
+  /* box-shadow: 0 0 0 2px ${(props) => props.theme["base-subtitle"]}; */
 
   img {
     width: 2.7rem;

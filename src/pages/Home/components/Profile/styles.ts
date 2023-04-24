@@ -9,7 +9,8 @@ export const ProfileWrapper = styled.div`
   max-width: 900px;
   background-color: ${(props) => props.theme["base-profile"]};
   margin-top: -5rem;
-  box-shadow: 0 0 0 2px ${(props) => props.theme["base-subtitle"]};
+  /* box-shadow: 0 0 0 2px ${(props) => props.theme["base-subtitle"]}; */
+  border-radius: 7px;
   gap: 1rem;
   img {
     width: 10rem;
