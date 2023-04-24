@@ -5,11 +5,11 @@ export const ProfileWrapper = styled.div`
   flex-direction: row;
   margin: 0 auto;
   padding: 1.5rem 2.5rem;
-  max-width: 1000px;
+  max-width: 900px;
   background-color: ${(props) => props.theme["base-profile"]};
   margin-top: -5rem;
   box-shadow: 0 0 0 2px ${(props) => props.theme["base-subtitle"]};
-
+  gap: 1rem;
   img {
     width: 10rem;
     height: 10rem;
@@ -22,6 +22,7 @@ export const ProfileTextWrapper = styled.div`
   margin: 1rem;
   align-items: flex-start;
   justify-content: center;
+  gap: 0.5rem;
 `;
 
 export const ProfileTitle = styled.div`
