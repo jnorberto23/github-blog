@@ -11,6 +11,7 @@ export const PostList = styled.div`
 
   @media (max-width: 728px) {
     padding-top: 1rem;
+    margin-top: 0;
     flex-direction: column;
   }
 `;

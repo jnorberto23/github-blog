@@ -14,6 +14,7 @@ export const PostWrapper = styled.div`
   :hover{
     box-sizing: border-box;
     border: 1px solid ${(props) => props.theme["base-label"]};
+    cursor: pointer;
   }
 `;
 
