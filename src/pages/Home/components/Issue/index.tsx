@@ -1,3 +1,5 @@
+import luxon from "luxon";
+import { DateFromNow } from "../../../../utils/dateFormat";
 import {
   PostTitleWrapper,
   PostTitleSpan,
@@ -21,11 +23,12 @@ type TypeIssue = {
 };
 
 export function Issue({ issue }: IIssueCard) {
+
   return (
     <PostWrapper>
       <PostTitleWrapper>
         <PostTitle>{issue.title}</PostTitle>
-        <PostTitleSpan>{1}</PostTitleSpan>
+        <PostTitleSpan>{DateFromNow(issue.created_at)}</PostTitleSpan>
       </PostTitleWrapper>
       <PostDescription>
         <ReactMarkdown>{issue.body}</ReactMarkdown>
