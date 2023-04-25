@@ -9,12 +9,13 @@ import {
   ProfileTitleWrapper,
   ProfileWrapper,
 } from "./styles";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "../../../../lib/axios";
 
 export function Profile() {
   type ProfileType = {
     id: number;
+    login: string;
     avatar_url: string;
     name: string;
     company: string;
@@ -23,50 +24,47 @@ export function Profile() {
   }
 
   const [profile, setProfile] = useState<ProfileType>();
-  useEffect(() => {
-    fetchData();
-  });
 
-  async function fetchData() {
+  const fetchProfile = useCallback(async() => {
     await api.get("/users/jnorberto23").then((resp) => {
-      const { id, avatar_url, name, company, bio, followers } = resp.data;
-      setProfile({ id, avatar_url, name, company, bio, followers });
+      const { id, login, avatar_url, name, company, bio, followers } = resp.data;
+      setProfile({ id,login,avatar_url, name, company, bio, followers });
     });
-  }
+  }, [])
+   
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   console.log('profile', profile)
   return (
     <ProfileWrapper>
       <img
-        src="https://avatars.githubusercontent.com/u/73195134?v=4"
+        src={profile?.avatar_url}
         alt="github avatar"
       />
       <ProfileContentWrapper>
         <ProfileTitleWrapper>
-          <ProfileTitle>João Norberto</ProfileTitle>
-          <ProfileTitleGithubLink to="https://www.github.com">
+          <ProfileTitle>{profile?.name}</ProfileTitle>
+          <ProfileTitleGithubLink to={`https://www.github.com/${profile?.login}`}>
             GitHub
             <ArrowSquareOut weight="bold" size={16} />
           </ProfileTitleGithubLink>
         </ProfileTitleWrapper>
 
-        <ProfileDescription>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </ProfileDescription>
+        <ProfileDescription>{profile?.bio}</ProfileDescription>
         <ProfileIcons>
           <ProfileIconsSpan>
             <GithubLogo weight="fill" size={20} />
-            jnorberto23
+            {profile?.login}
           </ProfileIconsSpan>
           <ProfileIconsSpan>
             <Buildings weight="fill" size={20} />
-            Luby
+            {profile?.company}
           </ProfileIconsSpan>
           <ProfileIconsSpan>
             <Users weight="fill" size={20} />
-            31
+            {profile?.followers}
           </ProfileIconsSpan>
         </ProfileIcons>
       </ProfileContentWrapper>
