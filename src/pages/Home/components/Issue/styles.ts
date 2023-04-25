@@ -72,9 +72,9 @@ export const PostDescription = styled.p`
   color: ${(props) => props.theme["base-text"]};
   display: -webkit-box;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 20rem;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 
   @media (max-width: 728px) {

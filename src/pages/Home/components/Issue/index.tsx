@@ -6,6 +6,9 @@ import {
   PostDescription,
 } from "./styles";
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 interface IIssueCard {
   issue: TypeIssue
 }
@@ -26,7 +29,7 @@ export function Issue({issue}: IIssueCard) {
         <PostTitleSpan>{1}</PostTitleSpan>
       </PostTitleWrapper>
       <PostDescription>
-       {issue.body}
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{issue.body}</ReactMarkdown>
       </PostDescription>
     </PostWrapper>
   );
