@@ -6,11 +6,10 @@ import {
   PostDescription,
 } from "./styles";
 
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import ReactMarkdown from "react-markdown";
 
 interface IIssueCard {
-  issue: TypeIssue
+  issue: TypeIssue;
 }
 
 type TypeIssue = {
@@ -21,7 +20,7 @@ type TypeIssue = {
   created_at: string;
 };
 
-export function Issue({issue}: IIssueCard) {
+export function Issue({ issue }: IIssueCard) {
   return (
     <PostWrapper>
       <PostTitleWrapper>
@@ -29,7 +28,7 @@ export function Issue({issue}: IIssueCard) {
         <PostTitleSpan>{1}</PostTitleSpan>
       </PostTitleWrapper>
       <PostDescription>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{issue.body}</ReactMarkdown>
+        <ReactMarkdown>{issue.body}</ReactMarkdown>
       </PostDescription>
     </PostWrapper>
   );
