@@ -9,8 +9,32 @@ import {
   ProfileTitleWrapper,
   ProfileWrapper,
 } from "./styles";
+import { useEffect, useState } from "react";
+import { api } from "../../../../lib/axios";
 
 export function Profile() {
+  type ProfileType = {
+    id: number;
+    avatar_url: string;
+    name: string;
+    company: string;
+    bio: string;
+    followers: number;
+  }
+
+  const [profile, setProfile] = useState<ProfileType>();
+  useEffect(() => {
+    fetchData();
+  });
+
+  async function fetchData() {
+    await api.get("/users/jnorberto23").then((resp) => {
+      const { id, avatar_url, name, company, bio, followers } = resp.data;
+      setProfile({ id, avatar_url, name, company, bio, followers });
+    });
+  }
+
+  console.log('profile', profile)
   return (
     <ProfileWrapper>
       <img
@@ -37,7 +61,7 @@ export function Profile() {
             jnorberto23
           </ProfileIconsSpan>
           <ProfileIconsSpan>
-            <Buildings weight="fill" size={20}/>
+            <Buildings weight="fill" size={20} />
             Luby
           </ProfileIconsSpan>
           <ProfileIconsSpan>
