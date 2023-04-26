@@ -24,11 +24,12 @@ type TypeIssue = {
 
 export function Issue({ issue }: IIssueCard) {
 
+  const dateFromNow = DateFromNow(issue.created_at).split(',')[0]
   return (
     <PostWrapper>
       <PostTitleWrapper>
         <PostTitle>{issue.title}</PostTitle>
-        <PostTitleSpan>{DateFromNow(issue.created_at)}</PostTitleSpan>
+        <PostTitleSpan>{`Há ${dateFromNow}`}</PostTitleSpan>
       </PostTitleWrapper>
       <PostDescription>
         <ReactMarkdown>{issue.body}</ReactMarkdown>
