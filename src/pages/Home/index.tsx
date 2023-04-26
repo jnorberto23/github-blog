@@ -7,6 +7,7 @@ import { IssueSearch } from "./components/IssueSearch";
 
 type TypeIssue = {
   id: string;
+  number: string;
   title: string;
   body: string;
   comments: string;

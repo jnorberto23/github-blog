@@ -1,48 +1,44 @@
 import { useParams } from "react-router-dom";
-import {
-  IssueHeaderGoBackAndNavigateWrapper,
-  IssueHeaderIcons,
-  IssueHeaderIconsSpan,
-  IssueHeaderTitle,
-  IssueHeaderWrapper,
-} from "./styles";
-import {
-  ArrowSquareOut,
-  CalendarX,
-  CaretLeft,
-  ChatCircle,
-  GithubLogo,
-} from "phosphor-react";
+import { IssueHeader } from "./components/IssueHeader";
+import { Fragment, useCallback, useEffect, useState } from "react";
+import { IssueBody } from "./components/IssueBody";
+import { api } from "../../lib/axios";
+
+type TypeIssue = {
+  id: string;
+  number: string;
+  title: string;
+  body: string;
+  comments: string;
+  created_at: string;
+  html_url: string;
+  user: {
+    login: string;
+  }
+};
+
 
 export function Issues() {
   const { id } = useParams();
+  const [issue, setIssue] = useState<TypeIssue>();
 
+  const fetchIssue = useCallback(async (id: string | undefined) => {
+    const query = `repos/Rocketseat/adonis-bull/issues/${id}`;
+
+    await api.get(query).then((response) => {
+      setIssue(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchIssue(id)
+  }, [fetchIssue, id])
+
+  console.log('issue', issue)
   return (
-    <IssueHeaderWrapper>
-      <IssueHeaderGoBackAndNavigateWrapper>
-        <span>
-          <CaretLeft weight="bold" size={16} />
-          Voltar
-        </span>
-        <span>
-          Ver no GitHub
-          <ArrowSquareOut weight="bold" size={16} />
-        </span>
-      </IssueHeaderGoBackAndNavigateWrapper>
-
-      <IssueHeaderTitle>Javascript data not rendering</IssueHeaderTitle>
-      <IssueHeaderIcons>
-        <IssueHeaderIconsSpan>
-          <GithubLogo weight="fill" size={20} />jnorberto23
-        </IssueHeaderIconsSpan>
-        <IssueHeaderIconsSpan>
-          <CalendarX weight="fill" size={20} />
-          Há 12 dias
-        </IssueHeaderIconsSpan>
-        <IssueHeaderIconsSpan>
-          <ChatCircle weight="fill" size={20} />5 comentários
-        </IssueHeaderIconsSpan>
-      </IssueHeaderIcons>
-    </IssueHeaderWrapper>
+    <Fragment>
+      {issue && <IssueHeader issue={issue}/>} 
+      {/* <IssueBody body={issue.body}/> */}
+    </Fragment>
   );
 }

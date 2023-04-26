@@ -16,6 +16,7 @@ interface IIssueCard {
 
 type TypeIssue = {
   id: string;
+  number: string;
   title: string;
   body: string;
   comments: string;
@@ -26,7 +27,7 @@ export function Issue({ issue }: IIssueCard) {
 
   const dateFromNow = DateFromNow(issue.created_at).split(',')[0]
   return (
-    <PostWrapper to={`/issues/${issue.id}`} >
+    <PostWrapper to={`/issues/${issue.number}`} >
       <PostTitleWrapper>
         <PostTitle>{issue.title}</PostTitle>
         <PostTitleSpan>{`Há ${dateFromNow}`}</PostTitleSpan>
