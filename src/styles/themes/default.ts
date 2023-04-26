@@ -11,5 +11,7 @@ export const defaultTheme = {
     'base-subtitle': '#C4D4E3',
     'base-title': '#E7EDF4',
     'blue': '#3294F8',
-    'header-blue': '#0C1E31'
+    'header-blue': '#0C1E31',
+    'medium-blue': "#0000CD",
+    'dark-blue': '#00008B'
   } as const

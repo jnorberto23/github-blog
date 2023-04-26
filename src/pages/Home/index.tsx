@@ -15,6 +15,7 @@ type TypeIssue = {
 
 export function Home() {
   const [issues, setIssues] = useState<TypeIssue[]>([]);
+  const [totalIssues, setTotalIssues] = useState(0);
   const [searchValue, setSearchValue] = useState("");
 
   const fetchIssues = useCallback(async () => {
@@ -23,24 +24,25 @@ export function Home() {
 
     await api.get(query).then((response) => {
       setIssues(response.data.items);
+      setTotalIssues(response.data.total_count);
     });
-
   }, [searchValue]);
 
-  function handleSubmitInput(e: React.KeyboardEvent<HTMLInputElement>): void {
-    if (e.key === 'Enter') {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>): void {
+    if (e.key === "Enter") {
       setSearchValue(e.currentTarget.value);
+      fetchIssues();
     }
   }
 
   useEffect(() => {
     fetchIssues();
-  }, [fetchIssues, searchValue]);
+  }, [fetchIssues]);
 
   return (
     <Fragment>
       <Profile />
-      <IssueSearch onKeyDown={handleSubmitInput}/>
+      <IssueSearch onKeyDown={handleKeyDown} totalIssues={totalIssues} />
       <IssueList>
         {issues &&
           issues.map((issue) => {

@@ -59,7 +59,14 @@ export const IssueSearchTitleSpan = styled.span`
   }
 `;
 
+// export const IssueSearchInputButtonWrapper = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+// `;
 export const IssueSearchInput = styled.input`
+  /* flex-basis: 93%; */
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -70,3 +77,26 @@ export const IssueSearchInput = styled.input`
   border: 1px solid ${(props) => props.theme["base-border"]};
   border-radius: 6px;
 `;
+
+// export const IssueSearchButton = styled.button`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   flex-basis: 5%;
+//   background-color: ${(props) => props.theme["medium-blue"]};
+//   color: ${(props) => props.theme["base-text"]};
+//   padding: 12px 16px;
+//   border: none;
+//   font-family: "Nunito";
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 0.9rem;
+//   line-height: 160%;
+//   border: 1px solid ${(props) => props.theme["base-border"]};
+//   border-radius: 6px;
+
+//   :hover{
+//     transition: 0.8ms;
+//     background-color: ${(props) => props.theme["dark-blue"]};
+//   }
+// `;
