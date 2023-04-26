@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PostSearchWrapper = styled.div`
+export const IssueSearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 900px;
@@ -14,7 +14,7 @@ export const PostSearchWrapper = styled.div`
   }
 `;
 
-export const PostSearchTitleWrapper = styled.div`
+export const IssueSearchTitleWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -30,7 +30,7 @@ export const PostSearchTitleWrapper = styled.div`
   }
 `;
 
-export const PostSearchTitle = styled.h2`
+export const IssueSearchTitle = styled.h2`
   font-family: "Nunito";
   font-style: normal;
   font-weight: 700;
@@ -44,7 +44,7 @@ export const PostSearchTitle = styled.h2`
   }
 `;
 
-export const PostSearchTitleSpan = styled.span`
+export const IssueSearchTitleSpan = styled.span`
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
@@ -59,13 +59,14 @@ export const PostSearchTitleSpan = styled.span`
   }
 `;
 
-export const PostSearchInput = styled.input`
-box-sizing: border-box;
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 12px 16px;
-background: ${(props) => props.theme["base-input"]};
-border: 1px solid  ${(props) => props.theme["base-border"]};
-border-radius: 6px;
-`
+export const IssueSearchInput = styled.input`
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 16px;
+  background: ${(props) => props.theme["base-input"]};
+  color: ${(props) => props.theme["base-text"]};
+  border: 1px solid ${(props) => props.theme["base-border"]};
+  border-radius: 6px;
+`;

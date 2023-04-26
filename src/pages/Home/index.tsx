@@ -1,8 +1,9 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Profile } from "./components/Profile";
-import { PostList } from "./styles";
+import { IssueList } from "./styles";
 import { Issue } from "./components/Issue";
 import { api } from "../../lib/axios";
+import { IssueSearch } from "./components/IssueSearch";
 
 type TypeIssue = {
   id: string;
@@ -13,28 +14,39 @@ type TypeIssue = {
 };
 
 export function Home() {
-  const [issues, setIssues] = useState<TypeIssue[]>([])
-  const fetchIssues = useCallback(async(query: string | null) => {
-    const url = `/search/issues?q=${query}%20is:issue%20is:open%20repo:Rocketseat/adonis-bull/`
-    await api.get(url).then((response) => {
-    const issuesList: TypeIssue[]  = response.data.items;
-    setIssues(issuesList);
+  const [issues, setIssues] = useState<TypeIssue[]>([]);
+  const [searchValue, setSearchValue] = useState("");
+
+  const fetchIssues = useCallback(async () => {
+    const urlParams = [searchValue, "is:issue", "is:open", "repo:Rocketseat/adonis-bull"]
+    const query = `/search/issues?q=${urlParams.join("%20")}`;
+
+    await api.get(query).then((response) => {
+      setIssues(response.data.items);
     });
-  }, [])
-   
+
+  }, [searchValue]);
+
+  function handleSubmitInput(e: React.KeyboardEvent<HTMLInputElement>): void {
+    if (e.key === 'Enter') {
+      setSearchValue(e.currentTarget.value);
+    }
+  }
+
   useEffect(() => {
-    fetchIssues('');
-  }, [fetchIssues]);
-  
-  console.log('issues', issues)
+    fetchIssues();
+  }, [fetchIssues, searchValue]);
+
   return (
     <Fragment>
       <Profile />
-      <PostList>
-        {issues && issues.map((issue) => {
-          return <Issue key={issue.id} issue={issue}/>;
-        })}
-      </PostList>
+      <IssueSearch onKeyDown={handleSubmitInput}/>
+      <IssueList>
+        {issues &&
+          issues.map((issue) => {
+            return <Issue key={issue.id} issue={issue} />;
+          })}
+      </IssueList>
     </Fragment>
   );
 }
