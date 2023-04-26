@@ -21,29 +21,31 @@ export function Profile() {
     company: string;
     bio: string;
     followers: number;
-  };
+  }
 
   const [profile, setProfile] = useState<ProfileType>();
 
-  const fetchProfile = useCallback(async () => {
+  const fetchProfile = useCallback(async() => {
     await api.get("/users/jnorberto23").then((resp) => {
-      const { id, login, avatar_url, name, company, bio, followers } =
-        resp.data;
-      setProfile({ id, login, avatar_url, name, company, bio, followers });
+      const { id, login, avatar_url, name, company, bio, followers } = resp.data;
+      setProfile({ id,login,avatar_url, name, company, bio, followers });
     });
-  }, []);
-
-  fetchProfile();
+  }, [])
+   
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
 
   return (
     <ProfileWrapper>
-      <img src={profile?.avatar_url} alt="github avatar" />
+      <img
+        src={profile?.avatar_url}
+        alt="github avatar"
+      />
       <ProfileContentWrapper>
         <ProfileTitleWrapper>
           <ProfileTitle>{profile?.name}</ProfileTitle>
-          <ProfileTitleGithubLink
-            to={`https://www.github.com/${profile?.login}`}
-          >
+          <ProfileTitleGithubLink to={`https://www.github.com/${profile?.login}`}>
             GitHub
             <ArrowSquareOut weight="bold" size={16} />
           </ProfileTitleGithubLink>

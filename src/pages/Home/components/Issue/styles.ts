@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PostWrapper = styled.div`
+export const PostWrapper = styled(Link)`
+  text-decoration: none;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -11,7 +13,10 @@ export const PostWrapper = styled.div`
   border-radius: 7px;
   gap: 1rem;
 
-  :hover{
+  :visited{
+    color: ${(props) => props.theme["base-text"]}
+  }
+  :hover {
     box-sizing: border-box;
     border: 1px solid ${(props) => props.theme["base-label"]};
     cursor: pointer;
@@ -26,6 +31,10 @@ export const PostTitleWrapper = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
+  :visited{
+    color: ${(props) => props.theme["base-text"]}
+  }
+  
   @media (max-width: 728px) {
     flex-direction: column;
     text-align: center;
@@ -64,6 +73,8 @@ export const PostTitleSpan = styled.span`
 `;
 
 export const PostDescription = styled.p`
+margin: auto;
+padding: auto;
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;

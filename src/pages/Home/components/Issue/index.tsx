@@ -26,7 +26,7 @@ export function Issue({ issue }: IIssueCard) {
 
   const dateFromNow = DateFromNow(issue.created_at).split(',')[0]
   return (
-    <PostWrapper>
+    <PostWrapper to={`/issues/${issue.id}`} >
       <PostTitleWrapper>
         <PostTitle>{issue.title}</PostTitle>
         <PostTitleSpan>{`Há ${dateFromNow}`}</PostTitleSpan>
