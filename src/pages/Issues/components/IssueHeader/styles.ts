@@ -31,25 +31,24 @@ export const IssueHeaderGoBackAndNavigateWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  span {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 160%;
-    color: ${(props) => props.theme["blue"]};
-    text-transform: uppercase;
-    text-decoration: none;
-    display: flex;
-    gap: 0.4rem;
-    :hover {
-      transition: 0.5s;
-      border-bottom: 1px solid ${(props) => props.theme["blue"]};
-    }
-  }
 `;
 
+export const IssueHeaderGoBackAndNavigateLink = styled(Link)`
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 160%;
+  color: ${(props) => props.theme["blue"]};
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  gap: 0.4rem;
+  :hover {
+    transition: 0.5s;
+    border-bottom: 1px solid ${(props) => props.theme["blue"]};
+  }
+`;
 export const IssueHeaderTitle = styled.div`
   font-family: "Nunito";
   font-style: normal;

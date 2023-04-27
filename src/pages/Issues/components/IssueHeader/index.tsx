@@ -1,5 +1,6 @@
 import { DateFromNow } from "../../../../utils/dateFormat";
 import {
+  IssueHeaderGoBackAndNavigateLink,
   IssueHeaderGoBackAndNavigateWrapper,
   IssueHeaderIcons,
   IssueHeaderIconsSpan,
@@ -32,19 +33,18 @@ type TypeIssue = {
 };
 
 export function IssueHeader({ issue }: IIssueHeader) {
-  console.log('issue no header', issue)
   const dateFromNow = DateFromNow(issue.created_at).split(",")[0];
   return (
     <IssueHeaderWrapper>
       <IssueHeaderGoBackAndNavigateWrapper>
-        <span>
+        <IssueHeaderGoBackAndNavigateLink to={'/'}>
           <CaretLeft weight="bold" size={16} />
           Voltar
-        </span>
-        <span>
+        </IssueHeaderGoBackAndNavigateLink>
+        <IssueHeaderGoBackAndNavigateLink to={issue.html_url}>
           Ver no GitHub
           <ArrowSquareOut weight="bold" size={16} />
-        </span>
+        </IssueHeaderGoBackAndNavigateLink>
       </IssueHeaderGoBackAndNavigateWrapper>
 
       <IssueHeaderTitle>{issue.title}</IssueHeaderTitle>
@@ -58,7 +58,7 @@ export function IssueHeader({ issue }: IIssueHeader) {
           {`Há ${dateFromNow}`}
         </IssueHeaderIconsSpan>
         <IssueHeaderIconsSpan>
-          <ChatCircle weight="fill" size={20} />5 comentários
+          <ChatCircle weight="fill" size={20} />{issue.comments} comentários
         </IssueHeaderIconsSpan>
       </IssueHeaderIcons>
     </IssueHeaderWrapper>

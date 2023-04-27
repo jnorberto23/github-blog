@@ -13,8 +13,8 @@ export const PostWrapper = styled(Link)`
   border-radius: 7px;
   gap: 1rem;
 
-  :visited{
-    color: ${(props) => props.theme["base-text"]}
+  :visited {
+    color: ${(props) => props.theme["base-text"]};
   }
   :hover {
     box-sizing: border-box;
@@ -31,10 +31,10 @@ export const PostTitleWrapper = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  :visited{
-    color: ${(props) => props.theme["base-text"]}
+  :visited {
+    color: ${(props) => props.theme["base-text"]};
   }
-  
+
   @media (max-width: 728px) {
     flex-direction: column;
     text-align: center;
@@ -73,8 +73,8 @@ export const PostTitleSpan = styled.span`
 `;
 
 export const PostDescription = styled.p`
-margin: auto;
-padding: auto;
+  margin: auto;
+  padding: auto;
   font-family: "Nunito";
   font-style: normal;
   font-weight: 400;
@@ -92,3 +92,4 @@ padding: auto;
     text-align: center;
   }
 `;
+``;

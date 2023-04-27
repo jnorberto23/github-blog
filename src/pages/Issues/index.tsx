@@ -34,11 +34,10 @@ export function Issues() {
     fetchIssue(id)
   }, [fetchIssue, id])
 
-  console.log('issue', issue)
   return (
     <Fragment>
       {issue && <IssueHeader issue={issue}/>} 
-      {/* <IssueBody body={issue.body}/> */}
+      {issue && <IssueBody body={issue.body}/>}
     </Fragment>
   );
 }

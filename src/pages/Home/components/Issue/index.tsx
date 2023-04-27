@@ -1,4 +1,4 @@
-import luxon from "luxon";
+import gfm from "remark-gfm";
 import { DateFromNow } from "../../../../utils/dateFormat";
 import {
   PostTitleWrapper,
@@ -33,7 +33,7 @@ export function Issue({ issue }: IIssueCard) {
         <PostTitleSpan>{`Há ${dateFromNow}`}</PostTitleSpan>
       </PostTitleWrapper>
       <PostDescription>
-        <ReactMarkdown>{issue.body}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[gfm]} children={issue.body}/>
       </PostDescription>
     </PostWrapper>
   );
